@@ -8,37 +8,44 @@ function getPlayerChoice(){
 
 function playRound(playerSelection, computerSelection){
     if(playerSelection == computerSelection){
-        console.log("draw");
-        return false;
+        console.log("tie");
+        return "tie";
     }
     else if(playerSelection ==1 && computerSelection ==2){
         console.log("You lose!");
-        return false;
+        return "lose";
     }
     else if(playerSelection ==2 && computerSelection ==3){
         console.log("You lose!");
-        return false;
+        return "lose";
     }
     else if(playerSelection ==3 && computerSelection ==1){
         console.log("You lose!");
-        return false;
+        return "lose";
     }
     else{
         console.log("You Win!");
-        return true;
+        return "win";
     }
 }
 
 function game(){
-    let count = 0;
-    for(let i=0;i<5;i++){
+    let scorePlayer = 0;
+    let scoreComputer = 0;
+    while(scoreComputer<5 && scorePlayer<5){
         let x = getPlayerChoice();
         let y = getComputerChoice();
         console.log(y);
         let result = playRound(x,y);
-        if(result){
-            count +=1;
+        if(result === "win"){
+            scorePlayer +=1;
+        }
+        else if(result === "lose"){
+            scoreComputer +=1;
+        }
+        else{
         }
     }
-    console.log("Score: "+ count);
+    console.log("Your score: "+ scorePlayer);
+    console.log("Computer score: "+ scoreComputer);
 }
