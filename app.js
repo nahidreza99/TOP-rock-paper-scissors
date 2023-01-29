@@ -1,51 +1,140 @@
+let game = 0;
+
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissor = document.getElementById("scissor");
+const comment = document.getElementById("comment");
+const robot = document.getElementById("robot");
+const scoreBoardPlayer = document.getElementById("scorePlayer");
+const scoreBoardComputer = document.getElementById("scoreComputer");
+const startGame = document.getElementById("startGame");
+const buttons = document.getElementsByClassName("buttons");
+
+let playerScore = 0;
+let computerScore = 0;
+
+startGame.addEventListener("click", ()=>newGame());
+
+scoreBoardComputer.innerHTML = computerScore;
+scoreBoardPlayer.innerHTML = playerScore;
+
+
+rock.addEventListener("click", () => handleClick("rock"));
+paper.addEventListener("click", () => handleClick("paper"));
+scissor.addEventListener("click", () => handleClick("scissor"));
+
+
+
 function getComputerChoice(){
-    return Math.floor((Math.random() * 3) + 1);
+    var x = Math.floor((Math.random() * 3) + 1);
+    if(x==1){
+        return "rock";
+    }
+    if(x==2){
+        return "paper";
+    }
+    if(x==3){
+        return "scissor";
+    }
 }
 
-function getPlayerChoice(){
-    return prompt("Enter your choice: 1=Rock, 2=Paper, 3=Scissor");
+function handleClick(playerChoice){
+    if(game){
+        switch(playerChoice){
+            case "rock":
+                playRound("rock");
+                break;
+            case "paper":
+                playRound("paper");
+                break;
+            case "scissor":
+                playRound("scissor");
+                break;
+        }
+    }
 }
 
-function playRound(playerSelection, computerSelection){
-    if(playerSelection == computerSelection){
+function playRound(playerSelection){
+    let computerSelection = getComputerChoice();
+
+    if(playerSelection === computerSelection){
         console.log("tie");
-        return "tie";
+        updateScore(0,0);
+        return;
     }
-    else if(playerSelection ==1 && computerSelection ==2){
+    else if(playerSelection =="rock" && computerSelection =="paper"){
         console.log("You lose!");
-        return "lose";
+        updateScore(0,1);
+        return;
     }
-    else if(playerSelection ==2 && computerSelection ==3){
+    else if(playerSelection =="paper" && computerSelection =="scissor"){
         console.log("You lose!");
-        return "lose";
+        updateScore(0,1);
+        return;
     }
-    else if(playerSelection ==3 && computerSelection ==1){
+    else if(playerSelection =="scissor" && computerSelection =="rock"){
         console.log("You lose!");
-        return "lose";
+        updateScore(0,1);
+        return;
     }
     else{
         console.log("You Win!");
-        return "win";
+        updateScore(1,0);
+        return;
     }
 }
 
-function game(){
-    let scorePlayer = 0;
-    let scoreComputer = 0;
-    while(scoreComputer<5 && scorePlayer<5){
-        let x = getPlayerChoice();
-        let y = getComputerChoice();
-        console.log(y);
-        let result = playRound(x,y);
-        if(result === "win"){
-            scorePlayer +=1;
-        }
-        else if(result === "lose"){
-            scoreComputer +=1;
-        }
-        else{
-        }
+function updateScore(p, c){
+    playerScore += p;
+    computerScore += c;
+    scoreBoardComputer.innerHTML = computerScore;
+    scoreBoardPlayer.innerHTML = playerScore;
+    if(playerScore == 5){
+        endGame("player");
+        return;
     }
-    console.log("Your score: "+ scorePlayer);
-    console.log("Computer score: "+ scoreComputer);
+    if(computerScore == 5){
+        endGame("computer");
+        return;
+    }
 }
+
+function endGame(winner){
+
+    switch(winner){
+        case "player":
+            comment.innerHTML = "Congratulations! You won.";
+            break;
+        case "computer":
+            comment.innerHTML = "Sorry! You lost."
+            break;
+    }
+
+    game = 0;
+
+    robot.innerHTML = '<img onclick="newGame()" src="robot-svgrepo-com.svg" alt="">';
+
+    for(btn of buttons){
+        btn.classList.remove("pointer");
+    }
+
+    return;
+    
+}
+
+function newGame(){
+    playerScore = 0;
+    computerScore = 0;
+    
+    game = 1;
+
+    for(btn of buttons){
+        btn.classList.add("pointer");
+    }
+
+    scoreBoardComputer.innerHTML = computerScore;
+    scoreBoardPlayer.innerHTML = playerScore;
+}
+
+
+    
