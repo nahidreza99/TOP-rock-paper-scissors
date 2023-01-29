@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="app.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Rock Paper Scissor</title>
 </head>
 <body>
     <main>
         <div class="container flex-column center">
-            <h1>Rock <span>|</span> Paper <span>|</span> Scissors</h1>
+            <h1 id = "header">Rock <span>|</span> Paper <span>|</span> Scissors</h1>
             <div class="choice-area flex-row center">
-                <img src="rock-svgrepo-com.svg" alt="">
-                <img src="page-filled-svgrepo-com.svg" alt="">
-                <img src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">
+                <img id="rock" class="buttons" src="rock-svgrepo-com.svg" alt="">
+                <img id="paper" class="buttons" src="page-filled-svgrepo-com.svg" alt="">
+                <img id="scissor" class="buttons" src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">
+            </div>
+            <div class="prompt flex-row">
+                <div id="robot" class="computer-choice flex-row center"><img id ="startGame" onclick="newGame()" src="robot-svgrepo-com.svg" alt=""></div>
+                <div class="robot">
+                    <div>you <span id="scorePlayer"></span> - <span id="scoreComputer"></span> com</div>
+                    <div id="comment">Click to play new game...</div>
+                </div>
             </div>
         </div>
     </main>
     <footer class="flex-row center">All rights reserved by Nahid Reza</footer>
+    <script src="app.js"></script>
 </body>
 </html>
