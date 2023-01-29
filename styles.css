@@ -8,6 +8,7 @@ body{
     width: 100vw;
 }
 
+
 .flex-row{
     display: flex;
     flex-direction: row;
@@ -23,6 +24,10 @@ body{
     align-items: center;
 }
 
+.right{
+    align-self: flex-end;
+}
+
 .choice-area{
     margin: 100px;
 }
@@ -30,8 +35,44 @@ body{
 .choice-area img{
     margin: 25px;
     padding: 25px;
-    background-color: rgb(141, 141, 141);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
+    box-shadow: 5px 5px 20px #888888;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.prompt{
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px #888888;
+    height: 175px;
+    width: 45%;
+    padding: 15px;
+}
+
+.robot{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+}
+
+#robot{
+    cursor: pointer;
+}
+
+.computer-choice img{
+    height: 80%;
+}
+
+.robot div:first-child{
+    align-self: flex-end;
+}
+
+.robot div:last-child{
+    margin: auto 0;
 }
 
 footer{
