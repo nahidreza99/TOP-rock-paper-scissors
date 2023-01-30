@@ -59,26 +59,31 @@ function playRound(playerSelection){
 
     if(playerSelection === computerSelection){
         console.log("tie");
+        comment.innerHTML = "Oh, that was a tie.";
         updateScore(0,0);
         return;
     }
     else if(playerSelection =="rock" && computerSelection =="paper"){
         console.log("You lose!");
+        comment.innerHTML = "Nice try, but the computer selected paper.";
         updateScore(0,1);
         return;
     }
     else if(playerSelection =="paper" && computerSelection =="scissor"){
         console.log("You lose!");
+        comment.innerHTML = "Oh no, scissor cuts through paper.";
         updateScore(0,1);
         return;
     }
     else if(playerSelection =="scissor" && computerSelection =="rock"){
         console.log("You lose!");
+        comment.innerHTML = "Damn, rock smashed the scissor";
         updateScore(0,1);
         return;
     }
     else{
         console.log("You Win!");
+        comment.innerHTML = "Good job. You beat the computer.";
         updateScore(1,0);
         return;
     }
