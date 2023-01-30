@@ -8,7 +8,6 @@ const comment = document.getElementById("comment");
 const robot = document.getElementById("robot");
 const scoreBoardPlayer = document.getElementById("scorePlayer");
 const scoreBoardComputer = document.getElementById("scoreComputer");
-const startGame = document.getElementById("startGame");
 const buttons = document.getElementsByClassName("buttons");
 const computerRound = document.getElementById("computer-round");
 const playerRound = document.getElementById("player-round");
@@ -16,30 +15,25 @@ const playerRound = document.getElementById("player-round");
 let playerScore = 0;
 let computerScore = 0;
 
-startGame.addEventListener("click", ()=>newGame());
-
 scoreBoardComputer.innerHTML = computerScore;
 scoreBoardPlayer.innerHTML = playerScore;
-
 
 rock.addEventListener("click", () => handleClick("rock"));
 paper.addEventListener("click", () => handleClick("paper"));
 scissor.addEventListener("click", () => handleClick("scissor"));
 
-
-
 function getComputerChoice(){
     var x = Math.floor((Math.random() * 3) + 1);
     if(x==1){
-        computerRound.innerHTML = '<img id="rock" class="buttons" src="rock-svgrepo-com.svg" alt="">'
+        computerRound.innerHTML = '<img src="rock-svgrepo-com.svg" alt="">'
         return "rock";
     }
     if(x==2){
-        computerRound.innerHTML = '<img id="paper" class="buttons" src="page-filled-svgrepo-com.svg" alt="">'
+        computerRound.innerHTML = '<img src="page-filled-svgrepo-com.svg" alt="">'
         return "paper";
     }
     if(x==3){
-        computerRound.innerHTML = '<img id="scissor" class="buttons" src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">'
+        computerRound.innerHTML = '<img src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">'
         return "scissor";
     }
 }
@@ -77,32 +71,53 @@ function playRound(playerSelection){
 
     if(playerSelection === computerSelection){
         console.log("tie");
+        comment.classList.add('pre-animation');
         comment.innerHTML = "Oh, that was a tie.";
         updateScore(0,0);
+        setTimeout(function(){
+            comment.classList.remove('pre-animation')
+        },250);
         return;
     }
     else if(playerSelection =="rock" && computerSelection =="paper"){
         console.log("You lose!");
+        comment.classList.add('pre-animation');
         comment.innerHTML = "Nice try, but the computer selected paper.";
         updateScore(0,1);
+        setTimeout(function(){
+            comment.classList.remove('pre-animation')
+        },250);
         return;
     }
     else if(playerSelection =="paper" && computerSelection =="scissor"){
         console.log("You lose!");
+        comment.classList.add('pre-animation');
         comment.innerHTML = "Oh no, scissor cuts through paper.";
         updateScore(0,1);
+        setTimeout(function(){
+            comment.classList.remove('pre-animation')
+        },250);
         return;
     }
     else if(playerSelection =="scissor" && computerSelection =="rock"){
         console.log("You lose!");
+        comment.classList.add('pre-animation');
         comment.innerHTML = "Damn, rock smashed the scissor";
         updateScore(0,1);
+        setTimeout(function(){
+            comment.classList.remove('pre-animation')
+        },250);
         return;
     }
     else{
         console.log("You Win!");
+        
+        comment.classList.add('pre-animation');
         comment.innerHTML = "Good job. You beat the computer.";
         updateScore(1,0);
+        setTimeout(function(){
+            comment.classList.remove('pre-animation')
+        },250);
         return;
     }
 }
@@ -126,10 +141,18 @@ function endGame(winner){
 
     switch(winner){
         case "player":
+            comment.classList.add('pre-animation');
             comment.innerHTML = "Congratulations! You won.";
+            setTimeout(function(){
+                comment.classList.remove('pre-animation')
+            },250);
             break;
         case "computer":
+            comment.classList.add('pre-animation');
             comment.innerHTML = "Sorry! You lost."
+            setTimeout(function(){
+                comment.classList.remove('pre-animation')
+            },250);
             break;
     }
 
@@ -140,7 +163,6 @@ function endGame(winner){
     }
 
     return;
-    
 }
 
 function newGame(){
@@ -152,9 +174,14 @@ function newGame(){
     for(btn of buttons){
         btn.classList.add("pointer");
     }
+
     computerRound.innerHTML = "";
     playerRound.innerHTML = "";
     scoreBoardComputer.innerHTML = computerScore;
     scoreBoardPlayer.innerHTML = playerScore;
+    comment.classList.add('pre-animation');
     comment.innerHTML = "Choose an option";
+    setTimeout(function(){
+        comment.classList.remove('pre-animation')
+    },250);
 }
