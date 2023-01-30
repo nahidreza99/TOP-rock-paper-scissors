@@ -10,6 +10,8 @@ const scoreBoardPlayer = document.getElementById("scorePlayer");
 const scoreBoardComputer = document.getElementById("scoreComputer");
 const startGame = document.getElementById("startGame");
 const buttons = document.getElementsByClassName("buttons");
+const computerRound = document.getElementById("computer-round");
+const playerRound = document.getElementById("player-round");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -29,12 +31,15 @@ scissor.addEventListener("click", () => handleClick("scissor"));
 function getComputerChoice(){
     var x = Math.floor((Math.random() * 3) + 1);
     if(x==1){
+        computerRound.innerHTML = '<img id="rock" class="buttons" src="rock-svgrepo-com.svg" alt="">'
         return "rock";
     }
     if(x==2){
+        computerRound.innerHTML = '<img id="paper" class="buttons" src="page-filled-svgrepo-com.svg" alt="">'
         return "paper";
     }
     if(x==3){
+        computerRound.innerHTML = '<img id="scissor" class="buttons" src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">'
         return "scissor";
     }
 }
@@ -44,18 +49,21 @@ async function handleClick(playerChoice){
         switch(playerChoice){
             case "rock":
                 rock.classList.add("spin");
+                playerRound.innerHTML = '<img class="buttons" src="rock-svgrepo-com.svg" alt="">';
                 playRound("rock");
                 await delay(510);
                 rock.classList.remove("spin");
                 break;
             case "paper":
                 paper.classList.add("spin");
+                playerRound.innerHTML = '<img class="buttons" src="page-filled-svgrepo-com.svg" alt="">';
                 playRound("paper");
                 await delay(510);
                 paper.classList.remove("spin");
                 break;
             case "scissor":
                 scissor.classList.add("spin");
+                playerRound.innerHTML = '<img class="buttons" src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">';
                 playRound("scissor");
                 await delay(510);
                 scissor.classList.remove("spin");
@@ -127,8 +135,6 @@ function endGame(winner){
 
     game = 0;
 
-    robot.innerHTML = '<img onclick="newGame()" src="robot-svgrepo-com.svg" alt="">';
-
     for(btn of buttons){
         btn.classList.remove("pointer");
     }
@@ -146,7 +152,8 @@ function newGame(){
     for(btn of buttons){
         btn.classList.add("pointer");
     }
-
+    computerRound.innerHTML = "";
+    playerRound.innerHTML = "";
     scoreBoardComputer.innerHTML = computerScore;
     scoreBoardPlayer.innerHTML = playerScore;
     comment.innerHTML = "Choose an option";
