@@ -16,11 +16,21 @@
                 <img id="paper" class="buttons" src="page-filled-svgrepo-com.svg" alt="">
                 <img id="scissor" class="buttons" src="scissor-filled-opened-tool-svgrepo-com.svg" alt="">
             </div>
-            <div class="prompt flex-row">
-                <div id="robot" class="computer-choice flex-row center"><img id ="startGame" onclick="newGame()" src="robot-svgrepo-com.svg" alt=""></div>
-                <div class="robot">
-                    <div>you <span id="scorePlayer"></span> - <span id="scoreComputer"></span> com</div>
-                    <div id="comment">Click to play new game...</div>
+            <div class="prompt flex-column">
+                <div class="score-board flex-row center">
+                    <div class="flex-column center"><div id="player-round" class="round"></div><div>you</div></div>
+                    <div class="flex-row">
+                        <p id="scorePlayer"></p>
+                        <p>-</p>
+                        <p id="scoreComputer"></p>
+                    </div>
+                    <div class="flex-column center"><div id="computer-round" class="round"></div><div>com</div></div>
+                </div>
+                <div class="robot flex-row">
+                    <div id="robot" class="flex-row center"><img id ="startGame" onclick="newGame()" src="robot-svgrepo-com.svg" alt=""></div>
+                    <div class="">
+                        <div id="comment">Click to play new game...</div>
+                    </div>
                 </div>
             </div>
         </div>
