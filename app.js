@@ -1,5 +1,6 @@
 let game = 0;
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissor = document.getElementById("scissor");
@@ -38,17 +39,26 @@ function getComputerChoice(){
     }
 }
 
-function handleClick(playerChoice){
+async function handleClick(playerChoice){
     if(game){
         switch(playerChoice){
             case "rock":
+                rock.classList.add("spin");
                 playRound("rock");
+                await delay(510);
+                rock.classList.remove("spin");
                 break;
             case "paper":
+                paper.classList.add("spin");
                 playRound("paper");
+                await delay(510);
+                paper.classList.remove("spin");
                 break;
             case "scissor":
+                scissor.classList.add("spin");
                 playRound("scissor");
+                await delay(510);
+                scissor.classList.remove("spin");
                 break;
         }
     }
@@ -139,7 +149,5 @@ function newGame(){
 
     scoreBoardComputer.innerHTML = computerScore;
     scoreBoardPlayer.innerHTML = playerScore;
+    comment.innerHTML = "Choose an option";
 }
-
-
-    
