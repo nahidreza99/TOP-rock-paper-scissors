@@ -65,15 +65,8 @@ h1{
 .prompt{
     border-radius: 10px;
     box-shadow: 5px 5px 20px #888888;
-    height: 175px;
+    height: 245px;
     width: 675px;
-    padding: 15px;
-}
-
-.robot{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     padding: 15px;
 }
 
@@ -81,16 +74,33 @@ h1{
     cursor: pointer;
 }
 
-.computer-choice img{
-    height: 80%;
+.robot{
+    align-items: center;
 }
 
-.robot div:first-child{
+.robot img{
+    height: 100px;
+    margin: 0 15px;
+}
+
+.round{
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+}
+
+.score-board{
     align-self: flex-end;
 }
 
-.robot div:last-child{
-    margin: auto 0;
+.score-board p{
+    padding: 0 5px;
+    transform: translateY(-50%);
+}
+
+.score-board img{
+    height: 90%;
+    margin: auto;
 }
 
 footer{
